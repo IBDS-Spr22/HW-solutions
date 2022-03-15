@@ -1,0 +1,141 @@
+---
+title: "Introduction to Biomedical Data Science / Homework-2"
+author:
+date:
+output:
+    html_document:
+        toc: true
+        toc_depth: 2
+        number_sections: true
+---
+
+
+# Play with some pre-made data
+
+## Load
+
+- Read `data/data1.rds`
+- Read `data/data2.rda`
+- Read `data/data3.rdata`
+
+```{r}
+
+data1 <- readRDS("data/data1.rds")
+
+load("data/data2.rda")
+
+load("data/data3.rdata")
+
+```
+
+## Examine
+
+- Show the type of each data object
+- Show the length of `data2`
+- Show the first item of `data1`
+- Write a logic comparison testing whether the fourth item of `data2` is a "k"
+- What is the largest number in `data1`
+    - You can use `sort` and numerical indexing to get the answer
+    - Or, is there a function for this already? Ask Google
+- Calculate the summary of `data3` and assign it to the variable `data3_sum`
+- Show the ratio of "female" to "male" in `data3_sum`
+- Subtract 10 from each element of `data1` and calculate the new average (no need to create new variable)
+
+```{r}
+
+class(data1)
+class(data2)
+class(data3)
+
+length(data2)
+
+data1[1]
+
+data2[4] == "k"
+
+# Find largest in data1
+tail(sort(data1))
+max(data1)
+
+data3_sum <- summary(data3)
+
+data3_sum["female"] / data3_sum["male"]
+
+mean(data1-10)
+
+
+```
+
+
+## Manipulate and save
+
+- Make a vector named `new_vec` using all the numbers in `data1` larger than 50
+- Shorten `data2` by selecting the first 100 items and store it with a new name `data2_short`
+- Append string `"AAA"` to each element of `data2_short` and save this as a new object `data2_appended` (hint: use `paste()` function with empty string "" as separator)
+- Save `data2_short` in data folder as an `.rds` file
+- Save `data2_appended` in data folder as a `.rda` file
+
+
+```{r}
+
+new_vec <- data1[data1 > 50]
+
+data2_short <- data2[1:100]
+
+data2_appended <- paste("AAA", data2_short, sep = "")
+
+saveRDS(data2_short, "data/data2_short.rds")
+
+save(data2_appended, file = "data/data2_appended.rda" )
+
+```
+
+
+# Create an unfair die function
+
+- The die has 6 faces like normal but number 6 is twice likelier to turn up. (Hint: think of it as having 7 faces but with two 6's)
+- Write a function that rolls the dice for a user-defined number of times and outputs a vector of the result.
+- Save this function as an Rscript under `scripts` folder
+- Source the script into Rmarkdown chunk below
+- `set.seed` to `222`, roll the dice 200 times, and store the results in `result` object
+- What is the position of the first occurrence of 3 (Hint: use `which` function and `==`)
+- How many times did the die roll 6? (Hint: use `==` and add all the instances of die being 6)
+- How many times did each face turned up (Hint: use `summary` after converting result to `factor`)
+
+```{r}
+
+source("scripts/unfair_die.R")
+
+set.seed(222)
+
+result <- unfair_die()
+
+which(result == 3)
+
+sum(result == 6)
+
+summary(factor(result))
+
+```
+
+
+# BONUS QUESTION: Learn and use new functions yourself
+
+- You will use `list()`, `lapply()`, and `dim()` functions
+- Create a list named `my_list` that contains three elements
+- These elements should be R built-in data frames: `cars`, `pressure`, `airquality`
+- Use `lapply()` function on the list to report dimensions (`dim`) of each data frame
+
+
+```{r}
+
+my_list <- list(cars, pressure, airquality)
+
+lapply(my_list, dim)
+
+```
+
+
+
+
+

@@ -1,0 +1,43 @@
+---
+title: "Introduction to Biomedical Data Science / Homework-1"
+author: "Atakan Ekiz"
+date: "January 26th, 2022"
+output:
+    html_document:
+        toc: true
+---
+
+# Introduction
+
+Molecular biology is **cool** because:
+
+- It tries to understand how life really works
+- Because of it, we can now develop targeted therapies to human diseases.
+- It also enables us to do interesting things like expressing a human protein in bacteria.
+
+> “All approaches at a higher level are suspect until confirmed at the molecular level.”
+>
+> Francis Crick
+
+Here is a 3D-reconstruction of how TP53 protein (also known as guardian angel of the genome) binds to DNA
+
+![TP53-DNA](https://proteopedia.org/wiki/images/3/3a/P53.gif)
+
+# Chunk-1
+
+```{r, eval=F}
+
+# 2 plus 2 equals 4
+
+print(2+2)
+
+```
+
+
+# Chunk-2
+
+```{r}
+
+plot(pressure)
+
+```
